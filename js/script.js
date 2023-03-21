@@ -28,7 +28,7 @@ preview.innerHTML += thumbnail;
 //gestione carosello
 //stato iniziale
 let active = 0;
-const thumbnailElement = document.getElementsByClassName("img-container")
+const thumbnailElement = document.getElementsByClassName("img-container");
 const sliderElement = document.getElementsByClassName("slide");
 sliderElement[active].classList.add("active");
 thumbnailElement[active].classList.add("active");
@@ -51,10 +51,10 @@ nextBtn.addEventListener("click", function() {
         active = 0;
     }
 
-    sliderElement[active].classList.add("active")
-    thumbnailElement[active].classList.add("active")
+    sliderElement[active].classList.add("active");
+    thumbnailElement[active].classList.add("active");
     //faccio ripartire l'intervallo di tempo
-    interval = setInterval(autoPlay,3000)
+    interval = setInterval(autoPlay,3000);
 })
 
 //prev btn
@@ -71,10 +71,10 @@ prevBtn.addEventListener("click", function() {
     }else{
         active = images.length -1;
     }
-    sliderElement[active].classList.add("active")
-    thumbnailElement[active].classList.add("active")
+    sliderElement[active].classList.add("active");
+    thumbnailElement[active].classList.add("active");
     //faccio ripartire l'intervallo di tempo
-    interval = setInterval(autoPlay,3000)
+    interval = setInterval(autoPlay,3000);
 })
 
 
@@ -89,7 +89,18 @@ function autoPlay (){
         active = 0;
     }
 
-    sliderElement[active].classList.add("active")
-    thumbnailElement[active].classList.add("active")
+    sliderElement[active].classList.add("active");
+    thumbnailElement[active].classList.add("active");
 }
+
+
+//blocco del carosello all' hover e reset all uscita dell hover
+const container = document.querySelector(".carousel-main");
+container.addEventListener("mouseover", function() {
+    clearInterval(interval);
+});
+
+container.addEventListener("mouseout", function() {
+    interval = setInterval(autoPlay, 3000);
+});
 
