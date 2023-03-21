@@ -32,9 +32,16 @@ const thumbnailElement = document.getElementsByClassName("img-container")
 const sliderElement = document.getElementsByClassName("slide");
 sliderElement[active].classList.add("active");
 thumbnailElement[active].classList.add("active");
+
+// intervallo di tempo per eseguire la funzione "autoPlay" ogni 3 secondi
+let interval = setInterval(autoPlay, 3000);
+
 //funzionalità bottoni
 const nextBtn = document.querySelector(".next-btn");
 nextBtn.addEventListener("click", function() {
+    // fermo l intervallo di tempo al click del btn
+    clearInterval(interval);
+    //eseguo la funzione in manuale
     sliderElement[active].classList.remove("active");
     thumbnailElement[active].classList.remove("active");
 
@@ -46,11 +53,16 @@ nextBtn.addEventListener("click", function() {
 
     sliderElement[active].classList.add("active")
     thumbnailElement[active].classList.add("active")
+    //faccio ripartire l'intervallo di tempo
+    interval = setInterval(autoPlay,3000)
 })
 
 //prev btn
 const prevBtn = document.querySelector(".back-btn");
 prevBtn.addEventListener("click", function() {
+    // fermo l intervallo di tempo al click del btn
+    clearInterval(interval);
+    //eseguo la funzione in manuale
     sliderElement[active].classList.remove("active");
     thumbnailElement[active].classList.remove("active");
 
@@ -61,5 +73,23 @@ prevBtn.addEventListener("click", function() {
     }
     sliderElement[active].classList.add("active")
     thumbnailElement[active].classList.add("active")
+    //faccio ripartire l'intervallo di tempo
+    interval = setInterval(autoPlay,3000)
 })
+
+
+//autoplay function------------------------------------------------------------
+function autoPlay (){
+    sliderElement[active].classList.remove("active");
+    thumbnailElement[active].classList.remove("active");
+
+    if (active < images.length - 1) {
+        active++ ;
+    }else{
+        active = 0;
+    }
+
+    sliderElement[active].classList.add("active")
+    thumbnailElement[active].classList.add("active")
+}
 

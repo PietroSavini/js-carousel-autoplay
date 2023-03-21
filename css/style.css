@@ -86,6 +86,7 @@ ul{
 div.active>div{
     background-color: transparent;
     border: 2px solid #fff;
+    transition: 200ms;
 }
 
 .active{
